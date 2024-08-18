@@ -38,8 +38,8 @@ public class MiaAcademyTests
         await applicationFormPage.ClickNextFormButtonAsync();
 
         // Verify we reached 'Student Information' form part
-        var headingLocator = page.GetByRole(AriaRole.Heading, new() { Name = "Student Information" }).Locator("b");
-        await Assertions.Expect(headingLocator).ToHaveTextAsync("Student Information");
+        await applicationFormPage.VerifyStudentInformationHeadingAsync();
+
         await browser.CloseAsync();
     }
 }

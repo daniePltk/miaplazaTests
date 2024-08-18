@@ -13,6 +13,8 @@ public class ApplicationFormPage : BasePage
     private readonly ILocator question;
     private readonly ILocator guardianNo;
     private readonly ILocator calendar;
+    private readonly ILocator headingLocator;
+
 
     public ApplicationFormPage(IPage page) : base(page)
     {
@@ -26,6 +28,8 @@ public class ApplicationFormPage : BasePage
         question = page.GetByRole(AriaRole.Combobox, new() { Name = "-Select-" }).Locator("div");
         guardianNo = page.GetByRole(AriaRole.Treeitem, new() { Name = "No" });
         calendar = page.GetByLabel("What is your preferred start");
+        headingLocator = page.GetByRole(AriaRole.Heading, new() { Name = "Student Information" }).Locator("b");
+
     }
 
     public async Task VerifyUrlAsync()
@@ -91,5 +95,11 @@ public class ApplicationFormPage : BasePage
     public async Task ClickNextFormButtonAsync()
     {
         await nextFormButton.ClickAsync();
+    }
+
+    public async Task VerifyStudentInformationHeadingAsync()
+    {
+        await Assertions.Expect(headingLocator).ToHaveTextAsync("Student Information");
+
     }
 }
