@@ -13,16 +13,16 @@ public class MiaAcademyTests
         var page = await browser.NewPageAsync();
 
         // Navigate to the main page
-        var homePage =  new HomePage(page);
+        var homePage = new HomePage(page);
         await homePage.NavigateToMiaPrepAsync();
-        
+
         // Navigate to MiaPrep Online High School through the banner link
         await homePage.ClickPrepLinkAsync();
 
-        // Step 3: Apply to MiaPrep Online High School
-        var highSchoolPage =  new HighSchoolPage(page);
+        // Apply to MiaPrep Online High School
+        var highSchoolPage = new HighSchoolPage(page);
         await highSchoolPage.ClickApplyNowAsync();
-        
+
         var applicationFormPage = new ApplicationFormPage(page);
         await applicationFormPage.ClickFirstNextButtonAsync();
         await applicationFormPage.VerifyUrlAsync();
@@ -36,7 +36,7 @@ public class MiaAcademyTests
             "01-Sep-2024"
         );
         await applicationFormPage.ClickNextFormButtonAsync();
-        
+
         // Verify we reached 'Student Information' form part
         var headingLocator = page.GetByRole(AriaRole.Heading, new() { Name = "Student Information" }).Locator("b");
         await Assertions.Expect(headingLocator).ToHaveTextAsync("Student Information");

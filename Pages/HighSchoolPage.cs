@@ -1,5 +1,4 @@
 using Microsoft.Playwright;
-using static Microsoft.Playwright.Assertions;
 using System.Threading.Tasks;
 
 public class HighSchoolPage : BasePage
@@ -12,8 +11,8 @@ public class HighSchoolPage : BasePage
     }
 
     public async Task ClickApplyNowAsync()
-    {   
+    {
         await applyNowButton.WaitForAsync();
-        await applyNowButton.ClickAsync(); 
+        await applyNowButton.ClickAsync();
     }
 }

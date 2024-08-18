@@ -1,5 +1,4 @@
 using Microsoft.Playwright;
-using static Microsoft.Playwright.Assertions;
 using System.Threading.Tasks;
 
 public class HomePage : BasePage
@@ -17,8 +16,8 @@ public class HomePage : BasePage
     }
 
     public async Task ClickPrepLinkAsync()
-    {   
+    {
         await miaPrepLink.WaitForAsync();
-        await miaPrepLink.ClickAsync(); 
+        await miaPrepLink.ClickAsync();
     }
 }
