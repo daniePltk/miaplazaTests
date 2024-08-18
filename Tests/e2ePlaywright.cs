@@ -17,11 +17,11 @@ public class MiaAcademyTests
         await homePage.NavigateToMiaPrepAsync();
         
         // Navigate to MiaPrep Online High School through the banner link
-         await homePage.ClickPrepLinkAsync();
+        await homePage.ClickPrepLinkAsync();
 
         // Step 3: Apply to MiaPrep Online High School
-        var applyButton = await page.WaitForSelectorAsync("a:has-text('Apply Now')"); // Update the selector if needed
-        await applyButton.ClickAsync();
+        var highSchoolPage =  new HighSchoolPage(page);
+        await highSchoolPage.ClickApplyNowAsync();
         
         var applicationFormPage = new ApplicationFormPage(page);
         await applicationFormPage.ClickFirstNextButtonAsync();

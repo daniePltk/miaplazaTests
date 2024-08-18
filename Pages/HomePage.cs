@@ -14,10 +14,9 @@ public class HomePage : BasePage
     public async Task NavigateToMiaPrepAsync()
     {
         await GotoAsync("https://miacademy.co/#/");
-
     }
 
-    public async Task ClickApplyNowAsync()
+    public async Task ClickPrepLinkAsync()
     {   
         await miaPrepLink.WaitForAsync();
         await miaPrepLink.ClickAsync(); 
