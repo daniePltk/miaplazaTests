@@ -12,12 +12,12 @@ public class MiaAcademyTests
         var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
         var page = await browser.NewPageAsync();
 
-        // Step 1: Navigate to the main page
-        await page.GotoAsync("https://miacademy.co/#/");
+        // Navigate to the main page
+        var homePage =  new HomePage(page);
+        await homePage.NavigateToMiaPrepAsync();
         
-        // Step 2: Navigate to MiaPrep Online High School through the banner link
-        var miaPrepLink = await page?.WaitForSelectorAsync("a[href*='miaprep']");
-        await miaPrepLink?.ClickAsync();
+        // Navigate to MiaPrep Online High School through the banner link
+         await homePage.ClickPrepLinkAsync();
 
         // Step 3: Apply to MiaPrep Online High School
         var applyButton = await page.WaitForSelectorAsync("a:has-text('Apply Now')"); // Update the selector if needed
@@ -25,22 +25,21 @@ public class MiaAcademyTests
         
         var applicationFormPage = new ApplicationFormPage(page);
         await applicationFormPage.ClickFirstNextButtonAsync();
-
         await applicationFormPage.VerifyUrlAsync();
 
-        // Step 4: Fill in the application form with the necessary details
+        // Fill in the application form with the necessary details
         await applicationFormPage.FillFormAsync(
             "John",
             "Doe",
             "john.doe@example.com",
-            "555-555-5555",
+            "1234567890",
             "01-Sep-2024"
         );
-
-        // Step 5: Click the "Next" button on the second page of the form
         await applicationFormPage.ClickNextFormButtonAsync();
-
-        // Close the browser at the end of the test
+        
+        // Verify we reached 'Student Information' form part
+        var headingLocator = page.GetByRole(AriaRole.Heading, new() { Name = "Student Information" }).Locator("b");
+        await Assertions.Expect(headingLocator).ToHaveTextAsync("Student Information");
         await browser.CloseAsync();
     }
 }

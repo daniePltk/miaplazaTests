@@ -9,6 +9,11 @@ public abstract class BasePage
         Page = page;
     }
 
+    public async Task GotoAsync(string url)
+    {
+        await Page.GotoAsync(url);
+    }
+
     public async Task VerifyUrlAsync(string expectedUrl)
     {
         await Assertions.Expect(Page).ToHaveURLAsync(expectedUrl);
