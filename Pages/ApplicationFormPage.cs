@@ -16,7 +16,6 @@ public class ApplicationFormPage : BasePage
 
     public ApplicationFormPage(IPage page) : base(page)
     {
-        // Initialize locators
         firstNameInput = page.GetByRole(AriaRole.Textbox, new() { Name = "Name First Name Required" });
         lastNameInput = page.GetByRole(AriaRole.Textbox, new() { Name = "Name Last Name Required" });
         emailInput = page.GetByLabel("Email *");
@@ -32,8 +31,7 @@ public class ApplicationFormPage : BasePage
 
     public async Task VerifyUrlAsync()
     {
-        string expectedURL = "https://forms.zohopublic.com/miaplazahelp/form/MOHSInitialApplication/formperma/okCyt4yyq39rZvSBXB9FSjDeek1ilbRVK1iNCK--3K8";
-        await VerifyUrlAsync(expectedURL);
+        await VerifyUrlAsync(AppConstants.Urls.applicvationFormUrl);
     }
 
     // First step
