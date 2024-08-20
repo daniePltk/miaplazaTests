@@ -1,4 +1,5 @@
 using Microsoft.Playwright;
+using MiaplazaTestsProject.Utilities;
 
 public class HomePage : BasePage
 {
