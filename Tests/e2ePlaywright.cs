@@ -1,13 +1,10 @@
 using Microsoft.Playwright;
-using Xunit;
-using System.Threading.Tasks;
 
 public class MiaAcademyTests
 {
     [Fact]
     public async Task ApplyToMiaPrepOnlineHighSchool()
     {
-        // Create an instance of Playwright and launch the browser
         using var playwright = await Playwright.CreateAsync();
         var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
         var page = await browser.NewPageAsync();
@@ -33,8 +30,9 @@ public class MiaAcademyTests
             "Doe",
             "john.doe@example.com",
             "1234567890",
-            "01-Sep-2024"
+            "10-Sep-2024"
         );
+
         await applicationFormPage.ClickNextFormButtonAsync();
 
         // Verify we reached 'Student Information' form part
